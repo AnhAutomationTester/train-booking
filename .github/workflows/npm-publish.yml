@@ -1,0 +1,31 @@
+name: React Frontend CI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'frontend/**' # chỉ chạy khi có thay đổi trong folder frontend
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: frontend # chỉ định thư mục làm việc mặc định
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
