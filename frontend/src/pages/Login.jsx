@@ -9,8 +9,15 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleSuccess = (credentialResponse) => {
-        console.log('Login Success:', credentialResponse);
-        alert('Đăng nhập thành công!');
+        console.log("Token:", JSON.stringify(credentialResponse.credential));
+
+        fetch('http://localhost:5000/api/auth/google', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: credentialResponse.credential }),
+        })
+            .then(res => res.json())
+            .then(console.log);
         navigate('/dashboard');
     };
 
