@@ -1,9 +1,10 @@
 import React from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assests/logo.png';
-import loginImage from '../assests/login_image.png';
+import logo from '../assets/logo.png';
+import loginImage from '../assets/login_image.png';
 import '../styles/Login.css';
+import {jwtDecode} from 'jwt-decode'
 
 const Login = () => {
     const navigate = useNavigate();
@@ -18,6 +19,18 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(console.log);
+            
+        const token = credentialResponse.credential
+        const decoded = jwtDecode(token);
+
+        const user = {
+            name: decoded.name,
+            email: decoded.email,
+            picture: decoded.picture,
+            googleId: decoded.sub,
+        };
+
+        localStorage.setItem('user', JSON.stringify(user));
         navigate('/dashboard');
     };
 
