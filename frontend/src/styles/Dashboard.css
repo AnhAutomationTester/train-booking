@@ -106,3 +106,13 @@ th {
 .user-menu button:hover {
     background-color: #f0f0f0;
 }
+
+.trip-list table tbody tr {
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.trip-list table tbody tr:hover {
+    background-color: #f0f8ff;
+    /* Màu xanh nhạt khi hover */
+}

@@ -5,20 +5,15 @@ import logo from '../assets/logo.png';
 import loginImage from '../assets/login_image.png';
 import '../styles/Login.css';
 import {jwtDecode} from 'jwt-decode'
+import {loginWithGoogle} from '../services/authService';
 
 const Login = () => {
     const navigate = useNavigate();
 
-    const handleSuccess = (credentialResponse) => {
+    const handleSuccess = async(credentialResponse) => {
         console.log("Token:", JSON.stringify(credentialResponse.credential));
 
-        fetch('http://localhost:5000/api/auth/google', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token: credentialResponse.credential }),
-        })
-            .then(res => res.json())
-            .then(console.log);
+        await loginWithGoogle(credentialResponse.credential);
             
         const token = credentialResponse.credential
         const decoded = jwtDecode(token);
