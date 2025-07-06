@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Dashboard.css';
 import logo from '../assets/logo.png';
 import bus16 from '../assets/bus_16_cho.png';
@@ -41,6 +42,7 @@ const getBusImage = (seats) => {
 const Dashboard = () => {
     const [user, setUser] = useState(null);
     const [showMenu, setShowMenu] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const userData = localStorage.getItem('user');
@@ -58,6 +60,10 @@ const Dashboard = () => {
 
     const handleViewHistory = () => {
         alert('👉 Tính năng xem lịch sử đặt vé đang được phát triển!');
+    };
+
+    const handleTripClick = (trip) => {
+        navigate('/booking', { state: { trip } });
     };
 
     if (!user) return null;
@@ -100,7 +106,7 @@ const Dashboard = () => {
                     </thead>
                     <tbody>
                         {trips.map((trip) => (
-                            <tr key={trip.id}>
+                            <tr key={trip.id} onClick={() => handleTripClick(trip)}>
                                 <td>
                                     <img
                                         src={getBusImage(trip.seats)}

@@ -1,0 +1,72 @@
+.booking-container {
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+.booking-body {
+    margin-top: 20px;
+}
+
+.seat-map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.seat-row {
+    display: flex;
+    margin: 5px 0;
+}
+
+.seat {
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    background-color: #e0e0e0;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.seat:hover {
+    background-color: #90caf9;
+}
+
+.aisle {
+    width: 20px;
+}
+
+.booking-title {
+    margin-left: 16px;
+}
+
+.floor-title {
+    margin-left: 16px;
+    font-weight: bold;
+    margin-top: 24px;
+}
+
+.booking-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.book-button {
+    background-color: #2196f3;
+    color: white;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.book-button:hover {
+    background-color: #1976d2;
+}
